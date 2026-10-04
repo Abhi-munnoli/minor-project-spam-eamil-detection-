@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile | SpamShield AI</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            color: #e8f1ff;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(0, 229, 255, 0.10), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(108, 99, 255, 0.12), transparent 30%),
+                linear-gradient(135deg, #050b16, #071322 50%, #050b16);
+        }
+
+        /* Background glow */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(0, 229, 255, 0.05);
+            filter: blur(100px);
+            top: 10%;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(120, 80, 255, 0.06);
+            filter: blur(100px);
+            bottom: 0;
+            right: -150px;
+            z-index: -1;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 72px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(5, 12, 25, 0.78);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: .3px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            color: #00e5ff;
+
+            background: linear-gradient(
+                135deg,
+                rgba(0,229,255,.18),
+                rgba(80,90,255,.18)
+            );
+
+            border: 1px solid rgba(0,229,255,.25);
+
+            box-shadow:
+                0 0 25px rgba(0,229,255,.12);
+        }
+
+        .brand span {
+            color: #00e5ff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            color: #8fa4bd;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: .25s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            background: rgba(255,255,255,.06);
+        }
+
+        .nav-links a.active {
+            color: #00e5ff;
+            background: rgba(0,229,255,.08);
+            border: 1px solid rgba(0,229,255,.12);
+        }
+
+        .logout {
+            color: #ff6b7a !important;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: min(1050px, 92%);
+            margin: 50px auto;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-header .small-title {
+            color: #00e5ff;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 {
+            font-size: 34px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #8195ad;
+            font-size: 14px;
+        }
+
+        /* PROFILE CARD */
+
+        .profile-card {
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(16,30,50,.94),
+                    rgba(7,17,31,.96)
+                );
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.35),
+                inset 0 1px 0 rgba(255,255,255,.03);
+        }
+
+        /* Top gradient */
+
+        .profile-banner {
+            height: 150px;
+
+            background:
+                radial-gradient(
+                    circle at 20% 30%,
+                    rgba(0,229,255,.20),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(101,91,255,.22),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #0b2136,
+                    #101b3c
+                );
+
+            border-bottom: 1px solid rgba(255,255,255,.06);
+
+            position: relative;
+        }
+
+        .banner-grid {
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+            background-size: 30px 30px;
+        }
+
+        /* Profile content */
+
+        .profile-content {
+            padding: 0 40px 40px;
+        }
+
+        .profile-top {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-top: -45px;
+            position: relative;
+        }
+
+        /* Avatar */
+
+        .avatar {
+            width: 92px;
+            height: 92px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            font-size: 34px;
+            font-weight: 800;
+
+            color: #00e5ff;
+
+            background:
+                linear-gradient(135deg, #102b42, #111d3b);
+
+            border: 4px solid #081422;
+
+            box-shadow:
+                0 0 0 1px rgba(0,229,255,.35),
+                0 0 35px rgba(0,229,255,.15);
+        }
+
+        .online {
+            position: absolute;
+
+            width: 17px;
+            height: 17px;
+
+            border-radius: 50%;
+
+            background: #21e58a;
+
+            border: 3px solid #081422;
+
+            left: 72px;
+            bottom: 5px;
+
+            box-shadow: 0 0 12px rgba(33,229,138,.7);
+        }
+
+        .verified {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 8px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            color: #53e6a1;
+
+            background: rgba(33,229,138,.08);
+            border: 1px solid rgba(33,229,138,.16);
+        }
+
+        .verified i {
+            font-size: 11px;
+        }
+
+        .user-heading {
+            margin-top: 22px;
+        }
+
+        .user-heading h2 {
+            font-size: 25px;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .user-heading p {
+            color: #7890aa;
+            font-size: 13px;
+        }
+
+        /* INFORMATION GRID */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .info-box {
+            padding: 22px;
+
+            border-radius: 16px;
+
+            background: rgba(255,255,255,.025);
+
+            border: 1px solid rgba(255,255,255,.07);
+
+            transition: .25s;
+        }
+
+        .info-box:hover {
+            transform: translateY(-2px);
+
+            background: rgba(255,255,255,.04);
+
+            border-color: rgba(0,229,255,.18);
+
+            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+        }
+
+        .info-label {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            color: #71869f;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            margin-bottom: 10px;
+        }
+
+        .info-label i {
+            color: #00e5ff;
+        }
+
+        .info-value {
+            color: #eaf3ff;
+            font-size: 15px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        /* SECURITY SECTION */
+
+        .security-section {
+            margin-top: 25px;
+            padding: 24px;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,229,255,.055),
+                    rgba(80,80,255,.045)
+                );
+
+            border: 1px solid rgba(0,229,255,.10);
+        }
+
+        .security-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .security-title {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .security-title i {
+            color: #00e5ff;
+        }
+
+        .secure-status {
+            color: #45dfa0;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .security-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .security-item {
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: rgba(0,0,0,.15);
+            border: 1px solid rgba(255,255,255,.05);
+        }
+
+        .security-item i {
+            color: #45dfa0;
+            margin-right: 6px;
+        }
+
+        .security-item span {
+            color: #91a4ba;
+            font-size: 12px;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+            margin: 35px 0 20px;
+
+            color: #52677e;
+            font-size: 12px;
+        }
+
+        .footer strong {
+            color: #00e5ff;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links a {
+                padding: 8px;
+                font-size: 12px;
+            }
+
+            .nav-links a i {
+                display: none;
+            }
+
+            .container {
+                width: 94%;
+                margin: 30px auto;
+            }
+
+            .profile-content {
+                padding: 0 22px 25px;
+            }
+
+            .profile-top {
+                align-items: center;
+            }
+
+            .verified {
+                font-size: 10px;
+                padding: 7px 9px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .security-items {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 520px) {
+
+            .brand {
+                font-size: 15px;
+            }
+
+            .brand-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .nav-links {
+                gap: 2px;
+            }
+
+            .nav-links a {
+                font-size: 0;
+            }
+
+            .nav-links a i {
+                display: block;
+                font-size: 14px;
+            }
+
+            .profile-banner {
+                height: 120px;
+            }
+
+            .avatar {
+                width: 78px;
+                height: 78px;
+                font-size: 28px;
+            }
+
+            .online {
+                left: 59px;
+                bottom: 3px;
+            }
+
+            .user-heading h2 {
+                font-size: 21px;
+            }
+
+            .verified {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="brand">
+        <div class="brand-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        Spam<span>Shield</span> AI
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/dashboard">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard
+        </a>
+
+        <a href="/history">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            History
+        </a>
+
+        <a href="/profile" class="active">
+            <i class="fa-solid fa-user"></i>
+            Profile
+        </a>
+
+        {% if session.get("role") == "admin" %}
+        <a href="/admin">
+            <i class="fa-solid fa-user-shield"></i>
+            Admin
+        </a>
+        {% endif %}
+
+        <a href="/logout" class="logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+    <div class="page-header">
+
+        <div class="small-title">
+            Account
+        </div>
+
+        <h1>Profile</h1>
+
+        <p>
+            Manage your SpamShield AI account and security information.
+        </p>
+
+    </div>
+
+
+    <!-- PROFILE CARD -->
+
+    <section class="profile-card">
+
+        <div class="profile-banner">
+            <div class="banner-grid"></div>
+        </div>
+
+
+        <div class="profile-content">
+
+            <div class="profile-top">
+
+                <div class="avatar">
+
+                    {% set profile_name = session.get("name") or "User" %}
+
+                    {{ profile_name[0]|upper }}
+
+                    <div class="online"></div>
+
+                </div>
+
+                <div class="verified">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Account Verified
+
+                </div>
+
+            </div>
+
+
+            <div class="user-heading">
+
+                <h2>
+                    {{ session.get("name") or "SpamShield User" }}
+                </h2>
+
+                <p>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Secure Spam Detection Account
+                </p>
+
+            </div>
+
+
+            <!-- INFORMATION -->
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        <i class="fa-solid fa-user"></i>
+                        Full Name
+                    </div>
+
+                    <div class="info-value">
+                        {{ session.get("name") or "Not available" }}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        <i class="fa-solid fa-envelope"></i>
+                        Email Address
+                    </div>
+
+                    <div class="info-value">
+                        {{ session.get("email") or "Not available" }}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        <i class="fa-solid fa-user-tag"></i>
+                        Account Role
+                    </div>
+
+                    <div class="info-value">
+                        {{ (session.get("role") or "User")|title }}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        <i class="fa-solid fa-fingerprint"></i>
+                        Authentication
+                    </div>
+
+                    <div class="info-value">
+                        Firebase Authentication
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SECURITY -->
+
+            <div class="security-section">
+
+                <div class="security-header">
+
+                    <div class="security-title">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        Security Status
+
+                    </div>
+
+                    <div class="secure-status">
+                        ● SECURE
+                    </div>
+
+                </div>
+
+
+                <div class="security-items">
+
+                    <div class="security-item">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>
+                            Firebase Authentication
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-item">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>
+                            Secure Session
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-item">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>
+                            Firestore Protected
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="footer">
+
+        <strong>SpamShield AI</strong>
+        &nbsp;•&nbsp;
+        Machine Learning • Flask • Firebase
+
+    </div>
+
+</main>
+
+</body>
+</html>

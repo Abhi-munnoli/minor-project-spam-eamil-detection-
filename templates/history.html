@@ -1,0 +1,3325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#050816"
+    >
+
+    <title>History | SpamShield AI</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+
+            --bg: #050816;
+
+            --panel:
+                rgba(11, 18, 40, 0.78);
+
+            --panel-2:
+                rgba(15, 24, 51, 0.82);
+
+            --border:
+                rgba(255,255,255,0.08);
+
+            --cyan: #00e5ff;
+
+            --purple: #8b5cf6;
+
+            --green: #22c55e;
+
+            --red: #ef4444;
+
+            --yellow: #facc15;
+
+            --text: #f5f9ff;
+
+            --muted: #8290aa;
+
+            --dark-muted: #56647c;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                "Inter",
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+
+                radial-gradient(
+                    circle at 8% 10%,
+                    rgba(0,229,255,0.10),
+                    transparent 27%
+                ),
+
+                radial-gradient(
+                    circle at 92% 15%,
+                    rgba(139,92,246,0.12),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(14,165,233,0.07),
+                    transparent 35%
+                ),
+
+                var(--bg);
+
+            overflow-x: hidden;
+        }
+
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(255,255,255,0.018) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.018) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent
+                );
+
+            z-index: -1;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+
+        button {
+            border: none;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 260px;
+
+            padding: 25px 18px;
+
+            background:
+                rgba(4,9,25,0.90);
+
+            border-right:
+                1px solid var(--border);
+
+            backdrop-filter:
+                blur(25px);
+
+            z-index: 100;
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding:
+                8px 12px 30px;
+        }
+
+
+        .brand-logo {
+
+            width: 43px;
+            height: 43px;
+
+            border-radius: 14px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--cyan),
+                    var(--purple)
+                );
+
+            box-shadow:
+                0 0 30px
+                rgba(0,229,255,0.20);
+        }
+
+
+        .brand-name {
+
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+
+        .brand-name span {
+            color: var(--cyan);
+        }
+
+
+        .side-label {
+
+            color: #52617b;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            padding:
+                0 12px 10px;
+        }
+
+
+        .nav {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+        }
+
+
+        .nav-link {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 13px 14px;
+
+            border-radius: 13px;
+
+            color: #7f8ba5;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .nav-link:hover {
+
+            color: white;
+
+            background:
+                rgba(255,255,255,0.045);
+
+            transform:
+                translateX(3px);
+        }
+
+
+        .nav-link.active {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,229,255,0.12),
+                    rgba(139,92,246,0.08)
+                );
+
+            border:
+                1px solid
+                rgba(0,229,255,0.13);
+
+            box-shadow:
+                inset 3px 0 0 var(--cyan);
+        }
+
+
+        .nav-icon {
+
+            width: 22px;
+
+            text-align: center;
+
+            font-size: 17px;
+        }
+
+
+        .side-bottom {
+
+            position: absolute;
+
+            left: 18px;
+            right: 18px;
+            bottom: 20px;
+        }
+
+
+        .security-status {
+
+            padding: 15px;
+
+            border:
+                1px solid
+                rgba(34,197,94,0.16);
+
+            background:
+                rgba(34,197,94,0.055);
+
+            border-radius: 15px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .status-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+        }
+
+
+        .status-dot {
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background:
+                var(--green);
+
+            box-shadow:
+                0 0 12px
+                var(--green);
+        }
+
+
+        .status-text {
+
+            color: #66758f;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        .logout-btn {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(239,68,68,0.06);
+
+            border:
+                1px solid
+                rgba(239,68,68,0.12);
+
+            color: #e88989;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+
+        .logout-btn:hover {
+
+            background:
+                rgba(239,68,68,0.12);
+
+            color: #ffaaaa;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main {
+
+            width:
+                calc(100% - 260px);
+
+            margin-left: 260px;
+
+            min-height: 100vh;
+
+            padding:
+                30px 35px 60px;
+        }
+
+
+        .topbar {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 35px;
+        }
+
+
+        .breadcrumb {
+
+            color: #596780;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        .breadcrumb span {
+
+            color: var(--cyan);
+        }
+
+
+        .user-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding:
+                7px 10px 7px 7px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,0.025);
+        }
+
+
+        .avatar {
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0891b2,
+                    #7c3aed
+                );
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .user-info strong {
+
+            display: block;
+
+            font-size: 11px;
+        }
+
+
+        .user-info small {
+
+            display: block;
+
+            color: #63708a;
+
+            font-size: 9px;
+
+            margin-top: 2px;
+        }
+
+
+        /* =====================================================
+           MOBILE HEADER
+        ===================================================== */
+
+        .mobile-header {
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
+
+        .page-header {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .eyebrow {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: var(--cyan);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.6px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .eyebrow-line {
+
+            width: 22px;
+
+            height: 1px;
+
+            background:
+                var(--cyan);
+        }
+
+
+        .page-header h1 {
+
+            font-size:
+                clamp(30px, 4vw, 46px);
+
+            letter-spacing:
+                -1.8px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .page-header p {
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        .header-actions {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .action-btn {
+
+            padding:
+                11px 15px;
+
+            border-radius: 11px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid var(--border);
+
+            color: #a9b6ca;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+
+        .action-btn:hover {
+
+            color: white;
+
+            border-color:
+                rgba(0,229,255,0.20);
+
+            background:
+                rgba(0,229,255,0.05);
+        }
+
+
+        /* =====================================================
+           SUMMARY CARDS
+        ===================================================== */
+
+        .summary-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 14px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .summary-card {
+
+            position: relative;
+
+            padding: 17px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 17px;
+
+            background:
+                var(--panel);
+
+            overflow: hidden;
+
+            backdrop-filter:
+                blur(20px);
+        }
+
+
+        .summary-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 70px;
+            height: 70px;
+
+            right: -25px;
+            bottom: -35px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(0,229,255,0.07);
+
+            filter:
+                blur(10px);
+        }
+
+
+        .summary-icon {
+
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            margin-bottom: 13px;
+
+            font-size: 14px;
+        }
+
+
+        .summary-icon.cyan {
+
+            background:
+                rgba(0,229,255,0.08);
+
+            color:
+                var(--cyan);
+        }
+
+
+        .summary-icon.red {
+
+            background:
+                rgba(239,68,68,0.08);
+
+            color:
+                #fb7185;
+        }
+
+
+        .summary-icon.green {
+
+            background:
+                rgba(34,197,94,0.08);
+
+            color:
+                #4ade80;
+        }
+
+
+        .summary-icon.purple {
+
+            background:
+                rgba(139,92,246,0.10);
+
+            color:
+                #a78bfa;
+        }
+
+
+        .summary-card span {
+
+            display: block;
+
+            color: #68758e;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .summary-card strong {
+
+            font-size: 23px;
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           HISTORY PANEL
+        ===================================================== */
+
+        .history-panel {
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 22px;
+
+            background:
+                var(--panel);
+
+            backdrop-filter:
+                blur(25px);
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 80px
+                rgba(0,0,0,0.20);
+        }
+
+
+        .history-toolbar {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding:
+                20px 22px;
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+
+        .toolbar-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+
+        .history-icon {
+
+            width: 39px;
+            height: 39px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,229,255,0.10),
+                    rgba(139,92,246,0.10)
+                );
+
+            border:
+                1px solid
+                rgba(0,229,255,0.12);
+
+            color:
+                var(--cyan);
+        }
+
+
+        .toolbar-title h2 {
+
+            font-size: 14px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .toolbar-title p {
+
+            color: #5d6b83;
+
+            font-size: 9px;
+        }
+
+
+        .toolbar-controls {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+
+        .search-box {
+
+            position: relative;
+        }
+
+
+        .search-box input {
+
+            width: 230px;
+
+            padding:
+                10px 12px 10px 34px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid var(--border);
+
+            outline: none;
+
+            background:
+                rgba(2,6,23,0.45);
+
+            color: white;
+
+            font-size: 10px;
+        }
+
+
+        .search-box input::placeholder {
+
+            color: #46536b;
+        }
+
+
+        .search-icon {
+
+            position: absolute;
+
+            left: 12px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color: #53627b;
+
+            font-size: 12px;
+        }
+
+
+        .filter-select {
+
+            padding:
+                10px 12px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid var(--border);
+
+            outline: none;
+
+            background:
+                rgba(2,6,23,0.45);
+
+            color: #9caac0;
+
+            font-size: 10px;
+
+            cursor: pointer;
+        }
+
+
+        .filter-select option {
+
+            background:
+                #0b1228;
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           TABLE
+        ===================================================== */
+
+        .table-wrapper {
+
+            overflow-x: auto;
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 850px;
+        }
+
+
+        thead {
+
+            background:
+                rgba(255,255,255,0.018);
+        }
+
+
+        th {
+
+            padding:
+                13px 20px;
+
+            text-align: left;
+
+            color: #53617a;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .9px;
+
+            font-weight: 800;
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+
+        td {
+
+            padding:
+                17px 20px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.045);
+
+            vertical-align: middle;
+
+            font-size: 10px;
+        }
+
+
+        tbody tr {
+
+            transition:
+                0.2s ease;
+        }
+
+
+        tbody tr:hover {
+
+            background:
+                rgba(0,229,255,0.025);
+        }
+
+
+        tbody tr:last-child td {
+
+            border-bottom: none;
+        }
+
+
+        /* DATE */
+
+        .date-main {
+
+            color: #c6d0df;
+
+            font-weight: 600;
+
+            white-space: nowrap;
+        }
+
+
+        .date-sub {
+
+            color: #56647b;
+
+            font-size: 8px;
+
+            margin-top: 4px;
+
+            white-space: nowrap;
+        }
+
+
+        /* MESSAGE */
+
+        .message-cell {
+
+            max-width: 420px;
+        }
+
+
+        .message-preview {
+
+            color: #b8c3d5;
+
+            line-height: 1.5;
+
+            display:
+                -webkit-box;
+
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+        }
+
+
+        .message-id {
+
+            color: #46536b;
+
+            font-size: 8px;
+
+            margin-top: 5px;
+        }
+
+
+        /* BADGES */
+
+        .badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding:
+                6px 9px;
+
+            border-radius: 20px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+        }
+
+
+        .badge::before {
+
+            content: "";
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+        }
+
+
+        .badge-spam {
+
+            color: #fb8b9a;
+
+            background:
+                rgba(239,68,68,0.08);
+
+            border:
+                1px solid
+                rgba(239,68,68,0.13);
+        }
+
+
+        .badge-spam::before {
+
+            background:
+                #ef4444;
+
+            box-shadow:
+                0 0 7px
+                #ef4444;
+        }
+
+
+        .badge-safe {
+
+            color: #63df91;
+
+            background:
+                rgba(34,197,94,0.07);
+
+            border:
+                1px solid
+                rgba(34,197,94,0.12);
+        }
+
+
+        .badge-safe::before {
+
+            background:
+                #22c55e;
+
+            box-shadow:
+                0 0 7px
+                #22c55e;
+        }
+
+
+        /* CONFIDENCE */
+
+        .confidence {
+
+            min-width: 110px;
+        }
+
+
+        .confidence-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 6px;
+        }
+
+
+        .confidence-value {
+
+            color: #dce6f4;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        .confidence-label {
+
+            color: #4f5d75;
+
+            font-size: 8px;
+        }
+
+
+        .confidence-track {
+
+            height: 5px;
+
+            width: 100%;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,0.05);
+
+            overflow: hidden;
+        }
+
+
+        .confidence-fill {
+
+            height: 100%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--cyan),
+                    var(--purple)
+                );
+        }
+
+
+        /* DELETE */
+
+        .delete-btn {
+
+            width: 30px;
+            height: 30px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(239,68,68,0.045);
+
+            border:
+                1px solid
+                rgba(239,68,68,0.09);
+
+            color: #9d5c66;
+
+            cursor: pointer;
+
+            transition:
+                0.2s;
+        }
+
+
+        .delete-btn:hover {
+
+            color: #ff7b88;
+
+            background:
+                rgba(239,68,68,0.11);
+
+            border-color:
+                rgba(239,68,68,0.20);
+        }
+
+
+        /* =====================================================
+           EMPTY STATE
+        ===================================================== */
+
+        .empty-state {
+
+            display: none;
+
+            text-align: center;
+
+            padding:
+                75px 25px;
+        }
+
+
+        .empty-icon {
+
+            width: 65px;
+            height: 65px;
+
+            margin:
+                0 auto 18px;
+
+            border-radius: 20px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(0,229,255,0.06);
+
+            border:
+                1px solid
+                rgba(0,229,255,0.10);
+
+            font-size: 27px;
+
+            color:
+                var(--cyan);
+        }
+
+
+        .empty-state h3 {
+
+            font-size: 16px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .empty-state p {
+
+            color: #63708a;
+
+            font-size: 10px;
+
+            line-height: 1.7;
+
+            max-width: 360px;
+
+            margin:
+                0 auto 20px;
+        }
+
+
+        .analyze-link {
+
+            display: inline-flex;
+
+            padding:
+                10px 14px;
+
+            border-radius: 10px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00b8d4,
+                    #7043e8
+                );
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           LOADING
+        ===================================================== */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            color: #63708a;
+
+            font-size: 10px;
+        }
+
+
+        .loader {
+
+            width: 30px;
+            height: 30px;
+
+            border-radius: 50%;
+
+            border:
+                2px solid
+                rgba(255,255,255,0.06);
+
+            border-top-color:
+                var(--cyan);
+
+            animation:
+                spin .8s linear infinite;
+
+            margin:
+                0 auto 13px;
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+        }
+
+
+        /* =====================================================
+           PAGINATION / FOOTER
+        ===================================================== */
+
+        .history-footer {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                14px 20px;
+
+            border-top:
+                1px solid var(--border);
+
+            color: #53617a;
+
+            font-size: 9px;
+        }
+
+
+        .footer-count strong {
+
+            color: #9aa8bd;
+        }
+
+
+        .clear-filter {
+
+            color:
+                var(--cyan);
+
+            cursor: pointer;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        .toast {
+
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            min-width: 280px;
+
+            padding:
+                14px 17px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(12,20,45,0.95);
+
+            border:
+                1px solid var(--border);
+
+            box-shadow:
+                0 20px 60px
+                rgba(0,0,0,0.40);
+
+            backdrop-filter:
+                blur(20px);
+
+            transform:
+                translateY(20px);
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: .3s;
+
+            z-index: 500;
+
+            font-size: 11px;
+        }
+
+
+        .toast.show {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        .toast.success {
+
+            border-color:
+                rgba(34,197,94,0.25);
+        }
+
+
+        .toast.error {
+
+            border-color:
+                rgba(239,68,68,0.25);
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .summary-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .toolbar-controls {
+
+                flex-wrap: wrap;
+            }
+        }
+
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+
+                display: none;
+            }
+
+
+            .main {
+
+                width: 100%;
+
+                margin-left: 0;
+
+                padding:
+                    20px 15px 45px;
+            }
+
+
+            .topbar {
+
+                display: none;
+            }
+
+
+            .mobile-header {
+
+                display: flex;
+            }
+
+
+            .page-header {
+
+                display: block;
+            }
+
+
+            .header-actions {
+
+                margin-top: 18px;
+            }
+
+
+            .summary-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 9px;
+            }
+
+
+            .summary-card {
+
+                padding: 14px;
+            }
+
+
+            .history-toolbar {
+
+                display: block;
+            }
+
+
+            .toolbar-controls {
+
+                margin-top: 15px;
+
+                display: grid;
+
+                grid-template-columns:
+                    1fr 100px;
+            }
+
+
+            .search-box input {
+
+                width: 100%;
+            }
+
+
+            .history-footer {
+
+                display: block;
+
+                line-height: 1.8;
+            }
+
+
+            .clear-filter {
+
+                display: block;
+
+                margin-top: 5px;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .summary-card strong {
+
+                font-size: 19px;
+            }
+
+
+            .page-header h1 {
+
+                font-size: 30px;
+            }
+
+
+            .header-actions {
+
+                display: grid;
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .action-btn {
+
+                text-align: center;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            🛡️
+        </div>
+
+        <div class="brand-name">
+            Spam<span>Shield</span>
+        </div>
+
+    </div>
+
+
+    <div class="side-label">
+        SECURITY CONSOLE
+    </div>
+
+
+    <nav class="nav">
+
+
+        <a
+            href="/dashboard"
+            class="nav-link"
+        >
+
+            <span class="nav-icon">
+                ◈
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+        <a
+            href="/dashboard#analyzer"
+            class="nav-link"
+        >
+
+            <span class="nav-icon">
+                ⌕
+            </span>
+
+            Analyze Email
+
+        </a>
+
+
+        <a
+            href="/history"
+            class="nav-link active"
+        >
+
+            <span class="nav-icon">
+                ◷
+            </span>
+
+            History
+
+        </a>
+
+
+        <a
+            href="/profile"
+            class="nav-link"
+        >
+
+            <span class="nav-icon">
+                ◉
+            </span>
+
+            Profile
+
+        </a>
+
+
+        <a
+            href="/admin"
+            class="nav-link"
+            id="adminLink"
+            style="display:none;"
+        >
+
+            <span class="nav-icon">
+                ◆
+            </span>
+
+            Admin Console
+
+        </a>
+
+
+    </nav>
+
+
+    <div class="side-bottom">
+
+
+        <div class="security-status">
+
+            <div class="status-title">
+
+                <span class="status-dot"></span>
+
+                AI ENGINE ONLINE
+
+            </div>
+
+
+            <div class="status-text">
+
+                SpamShield detection services
+                are ready for analysis.
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout-btn"
+            id="logoutBtn"
+        >
+            ↪ &nbsp; Sign Out
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="main">
+
+
+    <!-- MOBILE -->
+
+    <div class="mobile-header">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                🛡️
+            </div>
+
+            <div class="brand-name">
+                Spam<span>Shield</span>
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout-btn"
+            id="mobileLogout"
+            style="width:auto;padding:9px 13px;"
+        >
+            Logout
+        </button>
+
+    </div>
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+
+        <div class="breadcrumb">
+
+            SECURITY CONSOLE
+            &nbsp;/&nbsp;
+            <span>HISTORY</span>
+
+        </div>
+
+
+        <div class="user-box">
+
+            <div
+                class="avatar"
+                id="userAvatar"
+            >
+                A
+            </div>
+
+
+            <div class="user-info">
+
+                <strong id="topUserName">
+                    Loading...
+                </strong>
+
+                <small id="topUserEmail">
+                    Loading...
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+
+        <div>
+
+            <div class="eyebrow">
+
+                <span class="eyebrow-line"></span>
+
+                PRIVATE RECORDS
+
+            </div>
+
+
+            <h1>
+                Prediction History
+            </h1>
+
+
+            <p>
+                Review your previous email analyses,
+                detection results and AI confidence scores.
+            </p>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <button
+                class="action-btn"
+                onclick="window.location.href='/dashboard'"
+            >
+                ⌕ &nbsp; New Analysis
+            </button>
+
+
+            <button
+                class="action-btn"
+                onclick="loadHistory()"
+            >
+                ↻ &nbsp; Refresh
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="summary-grid">
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon cyan">
+                ◈
+            </div>
+
+            <span>
+                Total Analyses
+            </span>
+
+            <strong id="totalCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon red">
+                ⚠
+            </div>
+
+            <span>
+                Spam Detected
+            </span>
+
+            <strong id="spamCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon green">
+                ✓
+            </div>
+
+            <span>
+                Safe Messages
+            </span>
+
+            <strong id="safeCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon purple">
+                %
+            </div>
+
+            <span>
+                Spam Rate
+            </span>
+
+            <strong id="spamRate">
+                0%
+            </strong>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- HISTORY -->
+
+    <section class="history-panel">
+
+
+        <!-- TOOLBAR -->
+
+        <div class="history-toolbar">
+
+
+            <div class="toolbar-title">
+
+                <div class="history-icon">
+                    ◷
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        Analysis Records
+                    </h2>
+
+                    <p>
+                        Your recent SpamShield AI activity
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="toolbar-controls">
+
+
+                <div class="search-box">
+
+                    <span class="search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search messages..."
+                    >
+
+                </div>
+
+
+                <select
+                    class="filter-select"
+                    id="filterSelect"
+                >
+
+                    <option value="all">
+                        All
+                    </option>
+
+                    <option value="Spam">
+                        Spam
+                    </option>
+
+                    <option value="Not Spam">
+                        Safe
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOADING -->
+
+        <div
+            class="loading"
+            id="loading"
+        >
+
+            <div class="loader"></div>
+
+            Loading secure records...
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div
+            class="table-wrapper"
+            id="tableWrapper"
+            style="display:none;"
+        >
+
+            <table>
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Message
+                        </th>
+
+                        <th>
+                            Prediction
+                        </th>
+
+                        <th>
+                            Confidence
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="historyBody"
+                >
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+
+        <!-- EMPTY -->
+
+        <div
+            class="empty-state"
+            id="emptyState"
+        >
+
+            <div class="empty-icon">
+                ◷
+            </div>
+
+
+            <h3>
+                No analysis records yet
+            </h3>
+
+
+            <p>
+                Once you analyze an email, your
+                prediction and confidence result
+                will appear here.
+            </p>
+
+
+            <a
+                href="/dashboard"
+                class="analyze-link"
+            >
+                Analyze Your First Email
+            </a>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div
+            class="history-footer"
+            id="historyFooter"
+            style="display:none;"
+        >
+
+            <div class="footer-count">
+
+                Showing
+                <strong id="visibleCount">
+                    0
+                </strong>
+                records
+
+            </div>
+
+
+            <div
+                class="clear-filter"
+                onclick="clearFilters()"
+            >
+                Clear filters
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+    /* ========================================================
+       STATE
+    ======================================================== */
+
+    let historyItems = [];
+
+
+    /* ========================================================
+       ELEMENTS
+    ======================================================== */
+
+    const historyBody =
+        document.getElementById(
+            "historyBody"
+        );
+
+    const searchInput =
+        document.getElementById(
+            "searchInput"
+        );
+
+    const filterSelect =
+        document.getElementById(
+            "filterSelect"
+        );
+
+
+    /* ========================================================
+       TOAST
+    ======================================================== */
+
+    let toastTimer;
+
+
+    function showToast(
+        message,
+        type = "success"
+    ) {
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+
+        toast.textContent =
+            message;
+
+
+        toast.className =
+            `toast ${type} show`;
+
+
+        clearTimeout(
+            toastTimer
+        );
+
+
+        toastTimer =
+            setTimeout(
+                function () {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                3000
+            );
+    }
+
+
+    /* ========================================================
+       LOAD USER
+    ======================================================== */
+
+    async function loadUser() {
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/me",
+                    {
+                        credentials:
+                            "same-origin",
+
+                        cache:
+                            "no-store"
+                    }
+                );
+
+
+            if (
+                response.status === 401
+            ) {
+
+                window.location.href =
+                    "/login";
+
+                return;
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !data.success
+            ) {
+
+                throw new Error(
+                    data.error ||
+                    "Unable to load user."
+                );
+            }
+
+
+            const user =
+                data.user;
+
+
+            const name =
+                user.name ||
+                user.email
+                    ?.split("@")[0] ||
+                "User";
+
+
+            document.getElementById(
+                "topUserName"
+            ).textContent =
+                name;
+
+
+            document.getElementById(
+                "topUserEmail"
+            ).textContent =
+                user.email || "";
+
+
+            document.getElementById(
+                "userAvatar"
+            ).textContent =
+                name
+                    .charAt(0)
+                    .toUpperCase();
+
+
+            if (
+                user.role === "admin"
+            ) {
+
+                document.getElementById(
+                    "adminLink"
+                ).style.display =
+                    "flex";
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "User error:",
+                error
+            );
+        }
+    }
+
+
+    /* ========================================================
+       LOAD HISTORY
+    ======================================================== */
+
+    async function loadHistory() {
+
+        const loading =
+            document.getElementById(
+                "loading"
+            );
+
+        const tableWrapper =
+            document.getElementById(
+                "tableWrapper"
+            );
+
+        const emptyState =
+            document.getElementById(
+                "emptyState"
+            );
+
+        const footer =
+            document.getElementById(
+                "historyFooter"
+            );
+
+
+        loading.style.display =
+            "block";
+
+        tableWrapper.style.display =
+            "none";
+
+        emptyState.style.display =
+            "none";
+
+        footer.style.display =
+            "none";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/history?limit=200",
+                    {
+                        credentials:
+                            "same-origin",
+
+                        cache:
+                            "no-store"
+                    }
+                );
+
+
+            if (
+                response.status === 401
+            ) {
+
+                window.location.href =
+                    "/login";
+
+                return;
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !data.success
+            ) {
+
+                throw new Error(
+                    data.error ||
+                    "Unable to load history."
+                );
+            }
+
+
+            historyItems =
+                Array.isArray(data.items)
+                    ? data.items
+                    : [];
+
+
+            updateSummary();
+
+
+            renderHistory();
+
+
+        } catch (error) {
+
+            console.error(
+                "History error:",
+                error
+            );
+
+
+            loading.innerHTML = `
+
+                <div style="
+                    color:#fca5a5;
+                    font-size:11px;
+                    line-height:1.8;
+                ">
+
+                    ⚠ Unable to load prediction history.
+
+                    <br>
+
+                    <span style="
+                        color:#66758f;
+                    ">
+                        ${escapeHtml(
+                            error.message
+                        )}
+                    </span>
+
+                </div>
+            `;
+
+        } finally {
+
+            if (
+                historyItems.length === 0
+            ) {
+
+                loading.style.display =
+                    "none";
+            }
+        }
+    }
+
+
+    /* ========================================================
+       UPDATE SUMMARY
+    ======================================================== */
+
+    function updateSummary() {
+
+        const total =
+            historyItems.length;
+
+
+        const spam =
+            historyItems.filter(
+                item =>
+                    item.prediction === "Spam"
+            ).length;
+
+
+        const safe =
+            total - spam;
+
+
+        const rate =
+            total
+                ? ((spam / total) * 100)
+                    .toFixed(1)
+                : "0";
+
+
+        document.getElementById(
+            "totalCount"
+        ).textContent =
+            total;
+
+
+        document.getElementById(
+            "spamCount"
+        ).textContent =
+            spam;
+
+
+        document.getElementById(
+            "safeCount"
+        ).textContent =
+            safe;
+
+
+        document.getElementById(
+            "spamRate"
+        ).textContent =
+            `${rate}%`;
+    }
+
+
+    /* ========================================================
+       RENDER HISTORY
+    ======================================================== */
+
+    function renderHistory() {
+
+        const search =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+
+        const filter =
+            filterSelect.value;
+
+
+        const filtered =
+            historyItems.filter(
+                item => {
+
+                    const message =
+                        (
+                            item.message ||
+                            item.preview ||
+                            ""
+                        ).toLowerCase();
+
+
+                    const matchesSearch =
+                        !search ||
+                        message.includes(
+                            search
+                        );
+
+
+                    const matchesFilter =
+                        filter === "all" ||
+                        item.prediction === filter;
+
+
+                    return (
+                        matchesSearch &&
+                        matchesFilter
+                    );
+                }
+            );
+
+
+        historyBody.innerHTML =
+            "";
+
+
+        if (
+            historyItems.length === 0
+        ) {
+
+            document.getElementById(
+                "loading"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "emptyState"
+            ).style.display =
+                "block";
+
+
+            document.getElementById(
+                "tableWrapper"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "historyFooter"
+            ).style.display =
+                "none";
+
+
+            return;
+        }
+
+
+        document.getElementById(
+            "loading"
+        ).style.display =
+            "none";
+
+
+        if (
+            filtered.length === 0
+        ) {
+
+            document.getElementById(
+                "tableWrapper"
+            ).style.display =
+                "block";
+
+
+            document.getElementById(
+                "historyFooter"
+            ).style.display =
+                "flex";
+
+
+            historyBody.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        style="
+                            text-align:center;
+                            padding:60px 20px;
+                            color:#62708a;
+                        "
+                    >
+
+                        <div style="
+                            font-size:25px;
+                            margin-bottom:10px;
+                        ">
+                            ⌕
+                        </div>
+
+                        No matching records found.
+
+                    </td>
+
+                </tr>
+            `;
+
+
+            document.getElementById(
+                "visibleCount"
+            ).textContent =
+                "0";
+
+
+            return;
+        }
+
+
+        document.getElementById(
+            "tableWrapper"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "historyFooter"
+        ).style.display =
+            "flex";
+
+
+        filtered.forEach(
+            function (item) {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                const date =
+                    formatDate(
+                        item.timestamp
+                    );
+
+
+                const message =
+                    item.message ||
+                    item.preview ||
+                    "No message";
+
+
+                const confidence =
+                    Number(
+                        item.confidence || 0
+                    );
+
+
+                const isSpam =
+                    item.prediction === "Spam";
+
+
+                const safeMessage =
+                    escapeHtml(
+                        message
+                    );
+
+
+                const preview =
+                    safeMessage.length > 180
+                        ? safeMessage.slice(
+                            0,
+                            180
+                        ) + "..."
+                        : safeMessage;
+
+
+                row.innerHTML = `
+
+                    <td>
+
+                        <div class="date-main">
+                            ${date.date}
+                        </div>
+
+                        <div class="date-sub">
+                            ${date.time}
+                        </div>
+
+                    </td>
+
+
+                    <td class="message-cell">
+
+                        <div class="message-preview">
+                            ${preview}
+                        </div>
+
+                        <div class="message-id">
+                            ID:
+                            ${escapeHtml(
+                                item.id
+                            )}
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="
+                            badge
+                            ${isSpam
+                                ? "badge-spam"
+                                : "badge-safe"
+                            }
+                        ">
+
+                            ${isSpam
+                                ? "Spam"
+                                : "Not Spam"
+                            }
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="confidence">
+
+                            <div class="confidence-top">
+
+                                <span class="
+                                    confidence-value
+                                ">
+                                    ${confidence.toFixed(2)}%
+                                </span>
+
+                                <span class="
+                                    confidence-label
+                                ">
+                                    AI
+                                </span>
+
+                            </div>
+
+
+                            <div class="
+                                confidence-track
+                            ">
+
+                                <div
+                                    class="confidence-fill"
+                                    style="
+                                        width:
+                                        ${Math.min(
+                                            confidence,
+                                            100
+                                        )}%;
+                                    "
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+
+                        <button
+                            class="delete-btn"
+                            title="Delete record"
+                            onclick="
+                                deleteRecord(
+                                    '${escapeAttribute(
+                                        item.id
+                                    )}'
+                                )
+                            "
+                        >
+                            ×
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                historyBody.appendChild(
+                    row
+                );
+            }
+        );
+
+
+        document.getElementById(
+            "visibleCount"
+        ).textContent =
+            filtered.length;
+    }
+
+
+    /* ========================================================
+       DATE FORMAT
+    ======================================================== */
+
+    function formatDate(
+        timestamp
+    ) {
+
+        if (!timestamp) {
+
+            return {
+                date: "Unknown date",
+                time: "Time unavailable"
+            };
+        }
+
+
+        try {
+
+            const date =
+                new Date(
+                    timestamp
+                );
+
+
+            return {
+
+                date:
+                    date.toLocaleDateString(
+                        "en-IN",
+                        {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric"
+                        }
+                    ),
+
+                time:
+                    date.toLocaleTimeString(
+                        "en-IN",
+                        {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        }
+                    )
+            };
+
+
+        } catch {
+
+            return {
+
+                date:
+                    "Unknown date",
+
+                time:
+                    "Time unavailable"
+            };
+        }
+    }
+
+
+    /* ========================================================
+       DELETE RECORD
+    ======================================================== */
+
+    async function deleteRecord(
+        id
+    ) {
+
+        const confirmed =
+            window.confirm(
+                "Delete this prediction record?"
+            );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/history/${encodeURIComponent(id)}`,
+                    {
+                        method: "DELETE",
+
+                        credentials:
+                            "same-origin",
+
+                        headers: {
+                            "Accept":
+                                "application/json"
+                        }
+                    }
+                );
+
+
+            if (
+                response.status === 401
+            ) {
+
+                window.location.href =
+                    "/login";
+
+                return;
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !data.success
+            ) {
+
+                throw new Error(
+                    data.error ||
+                    "Unable to delete record."
+                );
+            }
+
+
+            historyItems =
+                historyItems.filter(
+                    item =>
+                        item.id !== id
+                );
+
+
+            updateSummary();
+
+            renderHistory();
+
+
+            showToast(
+                "Prediction record deleted.",
+                "success"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Delete error:",
+                error
+            );
+
+
+            showToast(
+                error.message ||
+                "Unable to delete record.",
+                "error"
+            );
+        }
+    }
+
+
+    /* ========================================================
+       SEARCH
+    ======================================================== */
+
+    searchInput.addEventListener(
+        "input",
+        renderHistory
+    );
+
+
+    filterSelect.addEventListener(
+        "change",
+        renderHistory
+    );
+
+
+    /* ========================================================
+       CLEAR FILTERS
+    ======================================================== */
+
+    function clearFilters() {
+
+        searchInput.value =
+            "";
+
+        filterSelect.value =
+            "all";
+
+        renderHistory();
+    }
+
+
+    /* ========================================================
+       HTML ESCAPE
+    ======================================================== */
+
+    function escapeHtml(
+        value
+    ) {
+
+        return String(value)
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+    }
+
+
+    function escapeAttribute(
+        value
+    ) {
+
+        return String(value)
+            .replace(
+                /\\/g,
+                "\\\\"
+            )
+            .replace(
+                /'/g,
+                "\\'"
+            );
+    }
+
+
+    /* ========================================================
+       LOGOUT
+    ======================================================== */
+
+    async function logout() {
+
+        try {
+
+            await fetch(
+                "/api/logout",
+                {
+                    method: "POST",
+
+                    credentials:
+                        "same-origin"
+                }
+            );
+
+        } catch (error) {
+
+            console.error(
+                error
+            );
+
+        } finally {
+
+            window.location.href =
+                "/login";
+        }
+    }
+
+
+    document
+        .getElementById("logoutBtn")
+        .addEventListener(
+            "click",
+            logout
+        );
+
+
+    document
+        .getElementById("mobileLogout")
+        .addEventListener(
+            "click",
+            logout
+        );
+
+
+    /* ========================================================
+       INITIALIZE
+    ======================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        async function () {
+
+            await loadUser();
+
+            await loadHistory();
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

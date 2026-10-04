@@ -1,0 +1,9 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+serviceAccountKey.json
+model/*.pkl
+*.log
+.DS_Store
