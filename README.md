@@ -86,7 +86,7 @@ Add screenshots of your actual application here.
 docs/images/login.png
 ```
 
-![SpamShield AI Login](A:/Spam_Email_Detector/ui_images)
+![SpamShield AI Login]("C:\Users\munno\OneDrive\Pictures\Screenshots\Screenshot 2026-10-04 112524.png")
 
 ---
 
