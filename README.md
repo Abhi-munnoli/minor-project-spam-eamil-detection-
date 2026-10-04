@@ -1,4 +1,4 @@
-# 🛡️ Spam-email-detection
+# 🛡️ SpamShield AI
 
 ### AI-Powered Spam Email Detection & Security Dashboard
 
@@ -78,67 +78,147 @@ The system combines a **TF-IDF text vectorizer** with a **Logistic Regression cl
 
 # 🖥️ Application Screenshots
 
-Add screenshots of your actual application here.
+The following screenshots are from the **SpamShield AI application**.
 
-### 🔐 Login
+All screenshots are stored in:
 
 ```text
-docs/images/login.png
+A:\Spam_Email_Detector\ui_images\
 ```
-
-![SpamShield AI Login]("A:\Spam_Email_Detector\ui_images\3.login.png")
 
 ---
 
-### 📊 Dashboard
+## 🔐 1. Login Page
+
+### Screenshot Path
 
 ```text
-docs/images/dashboard.png
+A:\Spam_Email_Detector\ui_images\3.login.png
 ```
 
-![SpamShield AI Dashboard](docs/images/dashboard.png)
+### Project-Relative Path
+
+```text
+ui_images/3.login.png
+```
+
+![SpamShield AI Login](ui_images/3.login.png)
+
+The login page provides secure user authentication through **Firebase Authentication**.
 
 ---
 
-### 🔎 Spam Detection
+## 📊 2. Dashboard
+
+### Screenshot Path
 
 ```text
-docs/images/analyzer.png
+A:\Spam_Email_Detector\ui_images\4.dashboard.png
 ```
 
-![Spam Email Analyzer](docs/images/analyzer.png)
+### Project-Relative Path
+
+```text
+ui_images/4.dashboard.png
+```
+
+![SpamShield AI Dashboard](ui_images/4.dashboard.png)
+
+The dashboard provides access to the spam analyzer, prediction statistics, history and user account features.
 
 ---
 
-### 📜 Prediction History
+## 🔎 3. Analyze Message
+
+### Screenshot Path
 
 ```text
-docs/images/history.png
+A:\Spam_Email_Detector\ui_images\5.Analyze Message.png
 ```
 
-![Prediction History](docs/images/history.png)
+### Project-Relative Path
+
+```text
+ui_images/5.Analyze Message.png
+```
+
+![SpamShield AI Analyze Message](ui_images/5.Analyze%20Message.png)
+
+The Analyze Message page allows users to enter an email or message and receive a machine-learning prediction.
+
+### Detection Flow
+
+```text
+Message
+   ↓
+Text Preprocessing
+   ↓
+TF-IDF Vectorization
+   ↓
+Logistic Regression
+   ↓
+Prediction + Confidence
+```
 
 ---
 
-### 👤 User Profile
+## 📜 4. History Page
+
+### Screenshot Path
 
 ```text
-docs/images/profile.png
+A:\Spam_Email_Detector\ui_images\6.History page 1.png
 ```
 
-![User Profile](docs/images/profile.png)
+### Project-Relative Path
+
+```text
+ui_images/6.History page 1.png
+```
+
+![SpamShield AI History](ui_images/6.History%20page%201.png)
+
+The History page displays previously analyzed messages and their prediction results stored in **Cloud Firestore**.
 
 ---
 
-### 👑 Admin Dashboard
+## 👤 5. Profile Page
+
+### Screenshot Path
 
 ```text
-docs/images/admin.png
+A:\Spam_Email_Detector\ui_images\8. profile edit.png
 ```
 
-![Admin Dashboard](docs/images/admin.png)
+### Project-Relative Path
 
-> 💡 **Tip:** Create a `docs/images` folder and place your screenshots there using exactly these filenames.
+```text
+ui_images/8. profile edit.png
+```
+
+![SpamShield AI Profile](ui_images/8.%20profile%20edit.png)
+
+The profile page displays user account information and authentication/security details.
+
+---
+
+## 🔥 6. Firebase Datastore
+
+### Screenshot Path
+
+```text
+A:\Spam_Email_Detector\ui_images\9.firebase datastore.png
+```
+
+### Project-Relative Path
+
+```text
+ui_images/9.firebase datastore.png
+```
+
+![SpamShield AI Firebase Datastore](ui_images/9.firebase%20datastore.png)
+
+The Firebase datastore stores application information such as user records and prediction history.
 
 ---
 
@@ -247,7 +327,7 @@ F1 Score   : XX.XX%
 
 # 🛠️ Technology Stack
 
-### Frontend
+## Frontend
 
 ```text
 HTML5
@@ -257,7 +337,7 @@ Responsive Design
 Font Awesome
 ```
 
-### Backend
+## Backend
 
 ```text
 Python
@@ -266,7 +346,7 @@ Flask-Limiter
 Jinja2
 ```
 
-### Machine Learning
+## Machine Learning
 
 ```text
 Scikit-learn
@@ -276,7 +356,7 @@ NLTK
 Joblib
 ```
 
-### Database & Authentication
+## Database & Authentication
 
 ```text
 Firebase Authentication
@@ -320,14 +400,13 @@ Spam_Email_Detector/
 │   ├── profile.html
 │   └── admin.html
 │
-├── 📂 docs/
-│   └── 📂 images/
-│       ├── login.png
-│       ├── dashboard.png
-│       ├── analyzer.png
-│       ├── history.png
-│       ├── profile.png
-│       └── admin.png
+├── 📂 ui_images/
+│   ├── 3.login.png
+│   ├── 4.dashboard.png
+│   ├── 5.Analyze Message.png
+│   ├── 6.History page 1.png
+│   ├── 8. profile edit.png
+│   └── 9.firebase datastore.png
 │
 ├── app.py
 ├── train_model.py
@@ -666,7 +745,7 @@ __pycache__/
 
 Try different types of messages.
 
-### 🟢 Normal
+### 🟢 Normal Message
 
 ```text
 Can you send me the project report after class?
@@ -678,7 +757,7 @@ Expected:
 🟢 NOT SPAM
 ```
 
-### 🔴 Suspicious
+### 🔴 Suspicious Message
 
 ```text
 You have been selected for an exclusive reward. Verify your information immediately.
@@ -892,7 +971,7 @@ If you find this project useful:
 
 ---
 
-## 🛡️ SpamShield AI
+# 🛡️ SpamShield AI
 
 ### **Detect • Analyze • Protect**
 
