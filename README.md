@@ -1,4 +1,4 @@
-# 🛡️ SpamShield AI
+# 🛡️ Spam-email-detection
 
 ### AI-Powered Spam Email Detection & Security Dashboard
 
