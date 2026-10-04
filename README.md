@@ -2,231 +2,123 @@
 
 ### AI-Powered Spam Email Detection & Security Dashboard
 
-**SpamShield AI** is a full-stack web application for detecting **Spam / Not Spam** messages using **Machine Learning, Natural Language Processing, Python Flask and Firebase**.
+SpamShield AI is a full-stack Spam Email Detection web application using **Python, Flask, scikit-learn, NLTK, Firebase Authentication and Cloud Firestore**.
 
-The application combines **TF-IDF text feature extraction** with a **Logistic Regression classifier** and provides a secure cybersecurity-style dashboard for message analysis, prediction history, user management and authentication.
+> 🔐 **Detect • Analyze • Protect**
 
 ---
 
 ## 🚀 Project Overview
 
-> 🔐 **Detect suspicious messages. Analyze smarter. Stay protected.**
+SpamShield AI uses **Machine Learning and Natural Language Processing** to classify messages as **Spam** or **Not Spam**.
 
-SpamShield AI provides an end-to-end spam detection system:
+### ✨ Features
 
-```text
-User
-  │
-  ▼
-Web Application
-  │
-  ├── Firebase Authentication
-  │
-  ▼
-Flask Backend
-  │
-  ▼
-Text Preprocessing
-  │
-  ▼
-TF-IDF Feature Extraction
-  │
-  ▼
-Logistic Regression
-  │
-  ▼
-┌──────────────────────┐
-│   Prediction Result  │
-├──────────────────────┤
-│ 🔴 Spam              │
-│ 🟢 Not Spam          │
-└──────────┬───────────┘
-           │
-           ▼
-      Firestore
-           │
-           ▼
-   Prediction History
-```
-
----
-
-# ✨ Features
-
-| Feature | Description |
-|---|---|
-| 🤖 **Spam Detection** | Classifies messages as Spam or Not Spam |
-| 🧠 **Machine Learning** | Logistic Regression classifier |
-| 📊 **TF-IDF** | Converts text into numerical ML features |
-| 🔤 **NLP Processing** | Text preprocessing using NLTK |
-| 🔐 **Firebase Authentication** | Secure user registration and login |
-| 🛡️ **Protected Sessions** | Flask protected sessions |
-| ☁️ **Firestore** | Stores prediction history |
-| 👤 **User Profile** | Displays user account information |
-| ✏️ **Profile Management** | Allows profile information management |
-| 👑 **Admin Dashboard** | Admin-level application monitoring |
-| 📈 **Model Evaluation** | Accuracy, precision, recall and F1-score |
-| 🚦 **Rate Limiting** | Helps protect API endpoints |
-| 🛡️ **Input Validation** | Validates user input |
-| 📱 **Responsive UI** | Desktop and mobile-friendly interface |
-| 🌙 **Cybersecurity UI** | Modern dark-themed interface |
+- 🤖 Spam / Not Spam Classification
+- 🧠 Logistic Regression Machine Learning
+- 📊 TF-IDF Text Feature Extraction
+- 📝 NLTK Text Preprocessing
+- 🔐 Firebase Authentication
+- 🛡️ Protected Flask Sessions
+- ☁️ Firestore Prediction History
+- 👤 User Profile
+- 👑 Admin Dashboard
+- 📈 Accuracy, Precision, Recall and F1 Evaluation
+- 🚦 Rate Limiting
+- 📱 Responsive UI
+- 🌙 Modern Cybersecurity-Style Interface
 
 ---
 
 # 🖥️ Application Screenshots
 
-The following screenshots show the main user interface and application workflow of **SpamShield AI**.
-
----
-
 ## 🏠 1. Home Page
 
-The home page introduces SpamShield AI and provides access to the authentication and spam detection system.
+**File:** `A:\Spam_Email_Detector\ui_images\1.home.png`
 
-<img src="file:///A:/Spam_Email_Detector/ui_images/1.home.png" alt="SpamShield AI Home Page" width="900">
-
-**Image Path:**
-
-```text
-A:\Spam_Email_Detector\ui_images\1.home.png
-```
+![SpamShield AI Home Page](file:///A:/Spam_Email_Detector/ui_images/1.home.png)
 
 ---
 
 ## 👤 2. Account Creation
 
-The account creation page allows new users to register securely using Firebase Authentication.
+**File:** `A:\Spam_Email_Detector\ui_images\2. account create.png`
 
-<img src="file:///A:/Spam_Email_Detector/ui_images/2.%20account%20create.png" alt="SpamShield AI Account Creation" width="900">
-
-**Image Path:**
-
-```text
-A:\Spam_Email_Detector\ui_images\2. account create.png
-```
+![SpamShield AI Account Creation](file:///A:/Spam_Email_Detector/ui_images/2.%20account%20create.png)
 
 ---
 
 ## 🔐 3. Login Page
 
-The login page allows registered users to securely access their SpamShield AI account.
+**File:** `A:\Spam_Email_Detector\ui_images\3.login.png`
 
-<img src="file:///A:/Spam_Email_Detector/ui_images/3.login.png" alt="SpamShield AI Login Page" width="900">
-
-**Image Path:**
-
-```text
-A:\Spam_Email_Detector\ui_images\3.login.png
-```
+![SpamShield AI Login](file:///A:/Spam_Email_Detector/ui_images/3.login.png)
 
 ---
 
 ## 📊 4. Dashboard
 
-The dashboard provides a central interface for accessing the spam detection system, statistics and prediction features.
+**File:** `A:\Spam_Email_Detector\ui_images\4.dashboard.png`
 
-<img src="file:///A:/Spam_Email_Detector/ui_images/4.dashboard.png" alt="SpamShield AI Dashboard" width="900">
-
-**Image Path:**
-
-```text
-A:\Spam_Email_Detector\ui_images\4.dashboard.png
-```
+![SpamShield AI Dashboard](file:///A:/Spam_Email_Detector/ui_images/4.dashboard.png)
 
 ---
 
 ## 🔎 5. Analyze Message
 
-The Analyze Message page allows users to enter an email or message and receive an ML-based Spam / Not Spam prediction.
+**File:** `A:\Spam_Email_Detector\ui_images\5.Analyze Message.png`
 
-<img src="file:///A:/Spam_Email_Detector/ui_images/5.Analyze%20Message.png" alt="SpamShield AI Analyze Message" width="900">
-
-**Image Path:**
-
-```text
-A:\Spam_Email_Detector\ui_images\5.Analyze Message.png
-```
+![SpamShield AI Analyze Message](file:///A:/Spam_Email_Detector/ui_images/5.Analyze%20Message.png)
 
 ---
 
-## 📜 6. Prediction History
+## 📜 6. History Page
 
-The History page displays previously analyzed messages and their prediction results stored in Firestore.
+**File:** `A:\Spam_Email_Detector\ui_images\6.History page 1.png`
 
-<img src="file:///A:/Spam_Email_Detector/ui_images/6.History%20page%201.png" alt="SpamShield AI History Page" width="900">
-
-**Image Path:**
-
-```text
-A:\Spam_Email_Detector\ui_images\6.History page 1.png
-```
+![SpamShield AI History](file:///A:/Spam_Email_Detector/ui_images/6.History%20page%201.png)
 
 ---
 
-## 👤 7. Profile Management
+## 👤 7. Profile Edit
 
-The profile page allows authenticated users to view and manage their account information.
+**File:** `A:\Spam_Email_Detector\ui_images\8. profile edit.png`
 
-<img src="file:///A:/Spam_Email_Detector/ui_images/8.%20profile%20edit.png" alt="SpamShield AI Profile" width="900">
-
-**Image Path:**
-
-```text
-A:\Spam_Email_Detector\ui_images\8. profile edit.png
-```
+![SpamShield AI Profile](file:///A:/Spam_Email_Detector/ui_images/8.%20profile%20edit.png)
 
 ---
 
 ## 🔥 8. Firebase Datastore
 
-Firebase/Firestore is used to securely store application data such as users and prediction history.
+**File:** `A:\Spam_Email_Detector\ui_images\9.firebase datastore.png`
 
-<img src="file:///A:/Spam_Email_Detector/ui_images/9.firebase%20datastore.png" alt="SpamShield AI Firebase Datastore" width="900">
-
-**Image Path:**
-
-```text
-A:\Spam_Email_Detector\ui_images\9.firebase datastore.png
-```
+![SpamShield AI Firebase Datastore](file:///A:/Spam_Email_Detector/ui_images/9.firebase%20datastore.png)
 
 ---
 
 # 🧠 Machine Learning Pipeline
 
-SpamShield AI follows the following machine learning pipeline:
-
 ```text
-                📩 Input Message
-                       │
-                       ▼
-               🧹 Text Cleaning
-                       │
-                       ▼
-              🔤 Text Processing
-                       │
-                       ▼
-               📊 TF-IDF
-            Feature Extraction
-                       │
-                       ▼
-             🤖 Logistic Regression
-                       │
-                       ▼
-                📈 Prediction
-                 /          \
-                /            \
-               ▼              ▼
-          🔴 SPAM        🟢 NOT SPAM
-               │              │
-               └──────┬───────┘
-                      ▼
-                 ☁️ Firestore
-                      │
-                      ▼
-              📜 Prediction History
-```
-
----
+📩 Input Message
+       ↓
+🧹 Text Preprocessing
+       ↓
+🔤 Tokenization
+       ↓
+🚫 Stopword Removal
+       ↓
+📊 TF-IDF Vectorization
+       ↓
+🤖 Logistic Regression
+       ↓
+📈 Prediction
+       ↓
+┌───────────────┬───────────────┐
+▼               ▼
+🔴 SPAM         🟢 NOT SPAM
+└───────────────┴───────────────┘
+       ↓
+☁️ Firestore Prediction History
 
 # 🏗️ System Architecture
 
